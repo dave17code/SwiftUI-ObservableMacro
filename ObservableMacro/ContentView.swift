@@ -7,15 +7,29 @@
 
 import SwiftUI
 
+@Observable class NumberCounter {
+    var number: Int = 0
+    
+    func increaseNumber() {
+        number += 1
+        print("number: ", number)
+    }
+}
+
+
 struct ContentView: View {
+    var numberCounter = NumberCounter()
+    
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+            Text("\(self.numberCounter.number)")
+            Button {
+                self.numberCounter.increaseNumber()
+            } label: {
+                Text("+1 버튼")
+            }
         }
-        .padding()
+        .font(.largeTitle)
     }
 }
 
